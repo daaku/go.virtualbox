@@ -411,5 +411,5 @@ func (disk *HardDisk) EnsureAutoReset() error {
 }
 
 func (machine *Machine) SeleniumAddress() string {
-	return "127.0.0.1:" + strconv.Itoa(machine.SeleniumPort)
+	return "0.0.0.0:" + strconv.Itoa(machine.SeleniumPort)
 }
