@@ -5,11 +5,11 @@ import (
 	"encoding/xml"
 	"errors"
 	"fmt"
+	"github.com/nshah/go.homedir"
 	uuid "github.com/nshah/gouuid"
 	"log"
 	"os"
 	"os/exec"
-	"os/user"
 	"path"
 	"regexp"
 	"runtime"
@@ -337,28 +337,13 @@ func runningMachineUUIDs() (uuids map[uuid.UUID]bool, err error) {
 	return
 }
 
-// Default Home directory for the current user
-func home() string {
-	user, err := user.Current()
-	if err != nil {
-		return "/"
-	}
-	username := user.Username
-
-	switch runtime.GOOS {
-	case "darwin":
-		return path.Join("/Users", username)
-	}
-	return path.Join("/home", username)
-}
-
 // Default file path for the VirtualBox config for the current user
 func DefaultPath() string {
 	switch runtime.GOOS {
 	case "darwin":
-		return path.Join(home(), "Library/VirtualBox/VirtualBox.xml")
+		return path.Join(homedir.Get(), "Library/VirtualBox/VirtualBox.xml")
 	}
-	return path.Join(home(), ".VirtualBox/VirtualBox.xml")
+	return path.Join(homedir.Get(), ".VirtualBox/VirtualBox.xml")
 }
 
 // Decode the default VirtualBox configuration for the current user
