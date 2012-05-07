@@ -1,3 +1,4 @@
+// Package virtualbox provides a library to interact with VirtualBox.
 package virtualbox
 
 import (
