@@ -6,14 +6,12 @@ import (
 	"encoding/xml"
 	"errors"
 	"fmt"
-	"github.com/nshah/go.homedir"
 	uuid "github.com/nshah/gouuid"
 	"log"
 	"os"
 	"os/exec"
 	"path"
 	"regexp"
-	"runtime"
 	"strconv"
 )
 
@@ -336,20 +334,6 @@ func runningMachineUUIDs() (uuids map[uuid.UUID]bool, err error) {
 		uuids[*uuid] = true
 	}
 	return
-}
-
-// Default file path for the VirtualBox config for the current user
-func DefaultPath() string {
-	switch runtime.GOOS {
-	case "darwin":
-		return path.Join(homedir.Get(), "Library/VirtualBox/VirtualBox.xml")
-	}
-	return path.Join(homedir.Get(), ".VirtualBox/VirtualBox.xml")
-}
-
-// Decode the default VirtualBox configuration for the current user
-func DecodeDefault() (vbox *VirtualBox, err error) {
-	return Decode(DefaultPath())
 }
 
 type CreateMachine struct {
