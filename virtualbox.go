@@ -117,6 +117,11 @@ type xmlMachineRoot struct {
 	Machines []xmlMachine `xml:"Machine"`
 }
 
+// Set the VBOX_USER_HOME environment variable.
+func SetHome(home string) error {
+	return os.Setenv("VBOX_USER_HOME", home)
+}
+
 // Load the given configuration file
 func Decode(configPath string) (vbox *VirtualBox, err error) {
 	runningMachineUUIDs, err := runningMachineUUIDs()
