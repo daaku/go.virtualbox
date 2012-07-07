@@ -6,7 +6,7 @@ import (
 	"encoding/xml"
 	"errors"
 	"fmt"
-	uuid "github.com/nshah/gouuid"
+	uuid "github.com/daaku/gouuid"
 	"log"
 	"os"
 	"os/exec"
